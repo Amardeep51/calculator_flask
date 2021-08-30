@@ -14,10 +14,15 @@ pipeline {
                 echo "Unit Test done successfully!"
             }
         }
-        stage('Output'){
+        stage('Final Confirmation'){
             steps{
                 bat 'python run_tests.py'
                 echo "That is the result of testing"
+            }
+        }
+        stage('Output'){
+            steps{
+                bat 'python output.py'
             }
         }
     }
