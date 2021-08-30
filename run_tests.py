@@ -6,6 +6,7 @@ Run all starting with test
 import sys
 import os
 import nose
+import test_calculator
 
 def main() -> object:
     sys.path.insert(0, os.path.dirname(__file__))
@@ -14,3 +15,4 @@ def main() -> object:
 
 if __name__ == '__main__':
     main()
+    os.system('python test_calculator.py' )
