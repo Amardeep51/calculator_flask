@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {        
+        stage('Compiling Stage'){
+            steps{
+                bat 'python calculator.py'
+                echo "Compilation done successfully!"
+            }
+        }
+        stage('Testing Stage'){
+            steps{
+                bat 'python test_calculator.py'
+                echo "Unit Test done successfully!"
+            }
+        }
+        stage('Output'){
+            steps{
+                bat 'python run_tests.py'
+                echo "That is the result of testing"
+            }
+        }
+    }
+}
