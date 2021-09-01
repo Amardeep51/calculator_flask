@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    Dockerfile true
 
     environment{
             registry= 'https://hub.docker.com/repository/docker/amardeep51/calculator_flask'
