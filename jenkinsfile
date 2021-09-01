@@ -24,7 +24,7 @@ pipeline {
 
         stage('Building Docker Image'){
             steps{
-                bat 'docker image build -t calculator_flask'
+                bat 'docker image build -t calculator_flask .'
                 echo "Image Built Successfully"
             }
         }
