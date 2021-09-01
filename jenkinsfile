@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    Dockerfile true
 
     environment{
             registry= 'https://hub.docker.com/repository/docker/amardeep51/calculator_flask'
@@ -28,9 +29,7 @@ pipeline {
 
         stage('Building image') {
                     steps{
-                        script {
-                            dockerImage = docker.build registry
-                        }
+                        bat 'docker image build -t calculator_flask'
                         echo "Building Image done successfully"
                     }
                 }
