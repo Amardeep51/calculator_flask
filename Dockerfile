@@ -6,5 +6,7 @@ WORKDIR /calculator_flask
 COPY .  /calculator_flask
 #installing dependencies of Flask
 RUN pip install -r requirements.txt
+
+EXPOSE  5000
 #define command to start container
 CMD ["python","output.py"]

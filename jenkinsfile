@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment{
-            registry= 'https://hub.docker.com/repository/docker/amardeep51/calculator_flask'
-        }
-
     stages {        
         stage('Compiling Stage'){
             steps{
@@ -26,17 +22,18 @@ pipeline {
                     }
                 }
 
-        stage('Building image') {
-                    steps{
-                        bat 'docker image build -t calculator_flask'
-                        echo "Building Image done successfully"
-                    }
-                }
-
-        stage('Output'){
+        stage('Building Docker Image'){
             steps{
-                bat 'python output.py'
+                bat 'docker image build -t calculator_flask'
+                echo "Image Built Successfully"
             }
+        }
+
+        stage('Running Docker Image'){
+              steps{
+                   bat 'docker run -p 5000:5000 -d calculator_flask'
+                   echo "Image Running"
+              }
         }
     }
 }
