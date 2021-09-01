@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment{
+            registry= 'https://hub.docker.com/repository/docker/amardeep51/calculator_flask'
+        }
+
     stages {        
         stage('Compiling Stage'){
             steps{
@@ -14,12 +18,23 @@ pipeline {
                 echo "Unit Test done successfully!"
             }
         }
+
         stage('Final Confirmation'){
-            steps{
-                bat 'python run_tests.py'
-                echo "That is the result of testing"
-            }
-        }
+                    steps{
+                        bat 'python run_tests.py'
+                        echo "That is the result of testing"
+                    }
+                }
+
+        stage('Building image') {
+                    steps{
+                        script {
+                            dockerImage = docker.build registry
+                        }
+                        echo "Building Image done successfully"
+                    }
+                }
+
         stage('Output'){
             steps{
                 bat 'python output.py'
