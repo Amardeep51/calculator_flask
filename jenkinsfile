@@ -1,6 +1,13 @@
 pipeline {
     agent any
 
+    stages {
+            stage('Initial Stage'){
+                steps{
+                    echo "Pipeline Initialised!"
+                }
+            }
+
     stages {        
         stage('Compiling Stage'){
             steps{
@@ -41,5 +48,12 @@ pipeline {
                    echo "Image Running"
               }
         }
+
+        stages {
+            stage('Initial Stage'){
+               steps{
+                    echo "Pipeline Initialised!"
+        }
+      }
     }
 }
