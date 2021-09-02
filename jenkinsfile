@@ -1,13 +1,6 @@
 pipeline {
     agent any
 
-    stages {
-            stage('Initial Stage'){
-                steps{
-                    echo "Pipeline Initialised!"
-                }
-            }
-
     stages {        
         stage('Compiling Stage'){
             steps{
@@ -39,8 +32,8 @@ pipeline {
         stage('Stop previous containers') {
              steps {
                  powershell 'docker stop $(docker ps -a -q)'
-                    }
-        }
+                                    }
+                                }
 
         stage('Running Docker Image'){
               steps{
@@ -48,12 +41,5 @@ pipeline {
                    echo "Image Running"
               }
         }
-
-        stages {
-            stage('Initial Stage'){
-               steps{
-                    echo "Pipeline Initialised!"
-        }
-      }
     }
 }
