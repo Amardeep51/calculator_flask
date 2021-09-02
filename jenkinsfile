@@ -29,11 +29,7 @@ pipeline {
             }
         }
 
-        stage('Stop previous containers') {
-                    steps {
-                       powershell 'docker stop $(docker ps -a -q)'
-                    }
-                }
+        
 
         stage('Running Docker Image'){
               steps{
