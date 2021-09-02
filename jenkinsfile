@@ -33,9 +33,14 @@ pipeline {
              steps {
                  powershell 'docker stop $(docker ps -a -q)'
                  powershell 'docker rm $(docker ps -q -f status=exited)'
-
-                                    }
-                                }
+                   }
+             }
+        stage('Removing Untagged Images') {
+                     steps {
+                         powershell 'docker images -f "dangling=true"'
+                         powershell 'docker rmi $(docker images -f "dangling=true" -q) --force'
+                            }
+                     }
 
         stage('Running Docker Image'){
               steps{
