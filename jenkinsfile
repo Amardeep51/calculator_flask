@@ -33,6 +33,7 @@ pipeline {
                     steps {
                        powershell 'docker stop $(docker ps -a -q)'
                        powershell 'docker rm $(docker ps -a -q)'
+                       bat 'docker rmi calculator_flask'
                     }
                 }
 
