@@ -29,6 +29,13 @@ pipeline {
             }
         }
 
+        stage('Stop previous containers') {
+                    steps {
+                        sh 'docker ps -f name=calculator_flask -q | xargs --no-run-if-empty docker container stop'
+                        sh 'docker container ls -a -fname=calculator_flask -q | xargs -r docker container rm'
+                    }
+                }
+
         stage('Running Docker Image'){
               steps{
                    bat 'docker run -p 5000:5000 -d calculator_flask'
