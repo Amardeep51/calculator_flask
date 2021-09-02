@@ -1,15 +1,23 @@
 pipeline {
     agent any
 
-    stages {        
+    stages {
+
+        stage('Welcome Stage'){
+                    steps{
+                        echo "Pipeline Initiated successfully!"
+                    }
+                }
         stage('Compiling Stage'){
             steps{
+                echo "Entered Compilation Stage"
                 bat 'python calculator.py'
                 echo "Compilation done successfully!"
             }
         }
         stage('Testing Stage'){
             steps{
+                echo "Entered Testing Stage"
                 bat 'python test_calculator.py'
                 echo "Unit Test done successfully!"
             }
@@ -17,6 +25,7 @@ pipeline {
 
         stage('Final Confirmation'){
                     steps{
+                        echo "Entered Confirmation Stage"
                         bat 'python run_tests.py'
                         echo "That is the result of testing"
                     }
@@ -24,6 +33,7 @@ pipeline {
 
         stage('Building Docker Image'){
             steps{
+                echo "Building Docker Image"
                 bat 'docker image build -t calculator_flask .'
                 echo "Image Built Successfully"
             }
@@ -31,22 +41,32 @@ pipeline {
 
         stage('Stop previous containers') {
              steps {
+                 echo "Stopping Previous Containers"
                  powershell 'docker stop $(docker ps -a -q)'
                  powershell 'docker rm $(docker ps -q -f status=exited)'
+                 echo "Previous Containers Stopped"
                    }
              }
         stage('Removing Untagged Images') {
                      steps {
+                         echo "Removing Untagged Images"
                          powershell 'docker images -f "dangling=true"'
                          powershell 'docker rmi $(docker images -f "dangling=true" -q) --force'
+                         echo "Untagged Images Removed"
                             }
                      }
 
         stage('Running Docker Image'){
               steps{
+                   echo "Image Getting Ready to run"
                    bat 'docker run -p 5000:5000 -d calculator_flask'
                    echo "Image Running"
               }
         }
+        stage('Welcome Stage'){
+             steps{
+                echo "Pipeline Terminated successfully!"
+        }
+      }
     }
 }
