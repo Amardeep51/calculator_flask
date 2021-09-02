@@ -3,11 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Welcome Stage'){
-                    steps{
-                        echo "Pipeline Initiated successfully!"
-                    }
-                }
         stage('Compiling Stage'){
             steps{
                 echo "Entered Compilation Stage"
