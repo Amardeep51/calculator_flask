@@ -31,8 +31,7 @@ pipeline {
 
         stage('Stop previous containers') {
                     steps {
-                        sh 'docker ps -f name=calculator_flask -q | xargs --no-run-if-empty docker container stop'
-                        sh 'docker container ls -a -fname=calculator_flask -q | xargs -r docker container rm'
+                       bat 'docker ps -a -q'
                     }
                 }
 
