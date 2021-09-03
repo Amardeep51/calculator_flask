@@ -35,12 +35,12 @@
     </form>
     {% if calculation_success == True %}
         <br/>
-        <p><h2>The calculation for {{input1}} {{operation}} {{input2}} is: {{result}}</h2></p>
+        <p>The calculation for {{input1}} {{operation}} {{input2}} is: {{result}}</p>
     {% endif %}
     {% if calculation_success == False %}
         <br/>
         <p>{{error}}</p>
-        <p><h2>{{input1}} {{operation}} {{input2}} = "{{result}}"</h2></p>
+        <p>{{input1}} {{operation}} {{input2}} = "{{result}}"</p>
     {% endif %}
     </center>
 </body>
