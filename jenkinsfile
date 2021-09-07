@@ -1,7 +1,6 @@
 pipeline {
     agent any
 
-
     stages {
 
         stage('Compiling Stage'){
@@ -34,8 +33,6 @@ pipeline {
                 echo "Image Built Successfully"
             }
         }
-
-
 
         stage('Stop previous containers') {
              steps {
