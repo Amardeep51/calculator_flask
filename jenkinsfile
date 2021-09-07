@@ -39,15 +39,12 @@ pipeline {
                 script{
                             dockerImage= docker.build registry
                             }
-                
+
             }
-            script{
-                        dockerImage= docker.build registry
-                        }
         }
 
         stage('uploading docker image to Docker Hub'){
-                    steps{
+                  steps{
                     script{
                         docker.withRegistry( '',  registryCredential ){
                         dockerImage.push()
