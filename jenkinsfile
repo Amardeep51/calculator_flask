@@ -1,7 +1,9 @@
 pipeline {
     agent any
 
+
     stages {
+
         stage('Compiling Stage'){
             steps{
                 echo "Pipeline Started Successfully"
@@ -32,6 +34,8 @@ pipeline {
                 echo "Image Built Successfully"
             }
         }
+
+
 
         stage('Stop previous containers') {
              steps {
