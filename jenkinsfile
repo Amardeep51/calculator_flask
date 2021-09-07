@@ -35,10 +35,10 @@ pipeline {
         }
 
         stage('Docker login')
-        steps{
-            bat 'docker login -u amardeep51 -p 81fae069-457e-49ec-aff4-daf5ccc92c4f'
-            eco "logged in"
-        }
+            steps{
+                bat 'docker login -u amardeep51 -p 81fae069-457e-49ec-aff4-daf5ccc92c4f'
+                eco "logged in"
+            }
 
 
         stage('Stop previous containers') {
