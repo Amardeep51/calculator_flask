@@ -62,6 +62,7 @@ pipeline {
         stage('Terminate Stage'){
              steps{
                 bat 'docker logout'
+                echo "Logged out from dockerhub
                 echo "Pipeline Terminated successfully!"
         }
       }
