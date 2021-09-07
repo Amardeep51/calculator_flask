@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    environment{
+    registry = "amardeep51/calculator_flask"
+    DOCKERHUB_CREDENTIALS =credentials('My DockerHub')
+    dockerImage = ''
+    }
+
     stages {
 
         stage('Compiling Stage'){
@@ -33,7 +39,12 @@ pipeline {
                 echo "Image Built Successfully"
             }
         }
-        
+        stage('Login'){
+            steps{
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                }
+        }
+
 
         stage('Stop previous containers') {
              steps {
