@@ -72,7 +72,9 @@ pipeline {
                     steps{
                         bat 'docker tag calculator_flask:latest amardeep51/calculator_flask:myfirstimage'
                         bat 'docker push amardeep51/calculator_flask:myfirstimage'
-                        echo "Logged in"
+                        echo "Image pushed successfully"
+                        echo "Logging out from DockerHub"
+                        bat 'docker logout'
                     }
                 }
 
