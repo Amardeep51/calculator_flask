@@ -34,13 +34,6 @@ pipeline {
             }
         }
 
-        stage('Docker Login'){
-                    steps{
-                        echo "Building Docker Image"
-                    }
-                }
-
-
         stage('Stop previous containers') {
              steps {
                  echo "Stopping Previous Containers"
