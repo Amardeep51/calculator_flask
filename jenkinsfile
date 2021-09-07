@@ -33,12 +33,7 @@ pipeline {
                 echo "Image Built Successfully"
             }
         }
-
-        stage('uploading docker image to Docker Hub'){
-                    steps{
-
-                    }
-                }
+        
 
         stage('Stop previous containers') {
              steps {
