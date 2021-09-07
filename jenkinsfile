@@ -34,6 +34,33 @@ pipeline {
             }
         }
 
+        stage('Stop previous containers') {
+              steps {
+                   echo "Stopping Previous Containers"
+                   powershell 'docker stop $(docker ps -a -q)'
+                   powershell 'docker rm $(docker ps -q -f status=exited)'
+                   echo "Previous Containers Stopped"
+                   }
+                }
+
+        stage('Removing Untagged Images') {
+             steps {
+                 echo "Removing Untagged Images"
+                    powershell 'docker images -f "dangling=true"'
+                    powershell 'docker rmi $(docker images -f "dangling=true" -q) --force'
+                    echo "Untagged Images Removed"
+                    }
+                }
+
+        stage('Running Docker Image'){
+                 steps{
+                        echo "Image Getting Ready to run"
+                        bat 'docker run -p 5000:5000 -d calculator_flask'
+                        echo "Image Running"
+                      }
+                }
+
+
         stage ('Login to docker hub'){
             steps{
                 bat 'docker login -u amardeep51 -p ab11edf8-1a03-40cb-8fd2-a7e5df5a9877'
@@ -48,14 +75,8 @@ pipeline {
                         echo "Logged in"
                     }
                 }
-                
-        stage('Running Docker Image'){
-              steps{
-                   echo "Image Getting Ready to run"
-                   bat 'docker run -p 5000:5000 -d calculator_flask'
-                   echo "Image Running"
-              }
-        }
+
+
         stage('Terminate Stage'){
              steps{
                 echo "Pipeline Terminated successfully!"
