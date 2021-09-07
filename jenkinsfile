@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
 
         stage('Compiling Stage'){
@@ -33,6 +33,12 @@ pipeline {
                 echo "Image Built Successfully"
             }
         }
+
+        stage ('Login')
+            steps{
+                bat 'docker login -u amardeep51 -p ab11edf8-1a03-40cb-8fd2-a7e5df5a9877'
+                echo "Logged in"
+            }
 
 
         stage('Stop previous containers') {
