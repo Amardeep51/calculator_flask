@@ -35,12 +35,11 @@ pipeline {
 
         stage('Building Docker Image'){
             steps{
-                echo "Building Docker Image"
-                bat 'docker image build -t calculator_flask .'
+
                 script{
                             dockerImage= docker.build registry
                             }
-                echo "Image Built Successfully"
+                
             }
             script{
                         dockerImage= docker.build registry
