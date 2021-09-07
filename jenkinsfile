@@ -34,12 +34,20 @@ pipeline {
             }
         }
 
-        stage ('Login'){
+        stage ('Login to docker hub'){
             steps{
                 bat 'docker login -u amardeep51 -p ab11edf8-1a03-40cb-8fd2-a7e5df5a9877'
                 echo "Logged in"
             }
         }
+
+        stage ('Push to docker hub'){
+                    steps{
+                        bat 'docker tag calculator_flask:latest amardeep51/calculator_flask:myfirstimage'
+                        bat 'docker push amardeep51/calculator_flask:myfirstimage'
+                        echo "Logged in"
+                    }
+                }
 
         stage('Stop previous containers') {
              steps {
