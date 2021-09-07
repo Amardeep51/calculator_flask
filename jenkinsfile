@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment{
+        DOCKERHUB_CREDENTIALS=credentials('docker_hub')
+    }
     stages {
 
         stage('Compiling Stage'){
@@ -31,6 +33,13 @@ pipeline {
                 echo "Building Docker Image"
                 bat 'docker image build -t calculator_flask .'
                 echo "Image Built Successfully"
+            }
+        }
+
+        stage('Login'){
+
+        steps{
+            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
 
