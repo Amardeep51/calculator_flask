@@ -34,6 +34,14 @@ pipeline {
             }
         }
 
+        stage('Running Docker Image'){
+                    steps{
+                        echo "Runningg Docker Image"
+                        bat 'docker run -p 5000:5000 -d calculator_flask'
+                        echo "Image Ran Successfully"
+                    }
+                }
+
 
         stage ('Login to docker hub'){
             steps{
