@@ -1,13 +1,6 @@
 pipeline {
     agent any
 
-    environment{
-        dockerImage=''
-        registry='amardeep51/calculator_flask'
-        registryCredential='My DockerHub'
-
-    }
-
     stages {
 
         stage('Compiling Stage'){
@@ -35,22 +28,16 @@ pipeline {
 
         stage('Building Docker Image'){
             steps{
-
-                script{
-                            dockerImage= docker.build registry
-                            }
-
+                echo "Building Docker Image"
+                bat 'docker image build -t calculator_flask .'
+                echo "Image Built Successfully"
             }
         }
 
         stage('uploading docker image to Docker Hub'){
-                  steps{
-                    script{
-                        docker.withRegistry( '',  registryCredential ){
-                        dockerImage.push()
-                        }
+                    steps{
+
                     }
-                   }
                 }
 
         stage('Stop previous containers') {
