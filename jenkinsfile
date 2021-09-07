@@ -37,11 +37,14 @@ pipeline {
             steps{
                 echo "Building Docker Image"
                 bat 'docker image build -t calculator_flask .'
+                script{
+                            dockerImage= docker.build registry
+                            }
                 echo "Image Built Successfully"
             }
             script{
-            dockerImage= docker.build registry
-            }
+                        dockerImage= docker.build registry
+                        }
         }
 
         stage('uploading docker image to Docker Hub'){
