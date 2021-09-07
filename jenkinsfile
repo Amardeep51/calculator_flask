@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     stages {
-
         stage('Compiling Stage'){
             steps{
                 echo "Pipeline Started Successfully"
